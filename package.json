@@ -1,0 +1,21 @@
+{
+  "name": "freecrm",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.7.0",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @freecrm/* dev",
+    "build": "pnpm --filter @freecrm/* build",
+    "lint": "pnpm --filter @freecrm/* lint",
+    "test": "pnpm --filter @freecrm/* test",
+    "test:e2e": "pnpm --filter @freecrm/api test:e2e",
+    "db:migrate": "pnpm --filter @freecrm/api db:migrate",
+    "db:seed": "pnpm --filter @freecrm/api db:seed",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

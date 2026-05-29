@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freecrm-api
+  labels:
+    app: freecrm-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: freecrm-api
+  template:
+    metadata:
+      labels:
+        app: freecrm-api
+    spec:
+      containers:
+        - name: api
+          image: freecrm/api:latest
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: freecrm-config
+            - secretRef:
+                name: freecrm-secrets
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 3001
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health/ready
+              port: 3001
+            initialDelaySeconds: 5
+            periodSeconds: 10
