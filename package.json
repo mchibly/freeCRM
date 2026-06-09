@@ -1,21 +1,23 @@
 {
   "name": "freecrm",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@9.7.0",
+  "description": "Monorepo for freeCRM",
   "scripts": {
-    "dev": "pnpm --parallel --filter @freecrm/* dev",
-    "build": "pnpm --filter @freecrm/* build",
-    "lint": "pnpm --filter @freecrm/* lint",
-    "test": "pnpm --filter @freecrm/* test",
-    "test:e2e": "pnpm --filter @freecrm/api test:e2e",
-    "db:migrate": "pnpm --filter @freecrm/api db:migrate",
-    "db:seed": "pnpm --filter @freecrm/api db:seed",
-    "docker:up": "docker compose up -d",
-    "docker:down": "docker compose down"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=9.0.0"
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "jsdom": "^24.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   }
 }
